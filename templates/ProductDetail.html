@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+{% block body %}
+<body>
+<div class="header">
+	</div>
+	<div class="banner text-center">
+	  <div class="container">    
+			<h1>Sell or Advertise   <span class="segment-heading">    anything online </span> with Resale</h1>
+			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+			<a href="/adpost">Post Free Ad</a>
+	  </div>
+	</div>
+	<!--single-page-->
+	<div class="single-page main-grid-border">
+		<div class="container">
+			<div class="product-desc">
+				<div class="col-md-7 product-view">
+					<h2>{{products.prod_title}}</h2>
+					<p> <i class="glyphicon glyphicon-map-marker"></i><a>{{products.prod_location}}</a>| Added at {{products.prod_date}}, Ad ID: {{products.prod_id}}</p>
+					<div class="flexslider">
+						<ul class="slides">
+							<li data-thumb="/media/{{products.image1}}">
+								<img src="/media/{{products.image1}}" />
+							</li>
+							<li data-thumb="/media/{{products.image2}}">
+								<img src="/media/{{products.image2}}" />
+							</li>
+							<li data-thumb="/media/{{products.image3}}">
+								<img src="/media/{{products.image3}}" />
+							</li>
+							<li data-thumb="/media/{{products.image4}}">
+								<img src="/media/{{products.image4}}" />
+							</li>
+						</ul>
+					</div>
+					<!-- FlexSlider -->
+					  <script defer src="{% static 'js/jquery.flexslider.js' %}"></script>
+					<link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" />
+
+						<script>
+					// Can also be used with $(document).ready()
+					$(window).load(function() {
+					  $('.flexslider').flexslider({
+						animation: "slide",
+						controlNav: "thumbnails"
+					  });
+					});
+					</script>
+					<!-- //FlexSlider -->
+					<div class="product-details">
+						<h4>Brand : <a href="#">Company name</a></h4>
+						<h>Views : <strong>150</strong></h4>
+						<p><strong>Summary</strong> : {{products.prod_desc}}</p>
+					
+					</div>
+				</div>
+				<div class="col-md-5 product-details-grid">
+					<div class="item-price">
+						<div class="product-price">
+							<p class="p-price" style="width:30% !important;">Price</p>
+							<h3 class="rate">Rs.{{products.prod_price}}</h3>
+							<div class="clearfix"></div>
+						</div>
+						<div class="condition">
+							<p class="p-price" style="width:30% !important;">Condition</p>
+							<h4>{{products.prod_condition}}</h4>
+							<div class="clearfix"></div>
+						</div>
+						<div class="itemtype">
+							<p class="p-price" style="width:30% !important;">Item Type</p>
+							<h4>{{products.prod_cat}}</h4>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="interested text-center">
+						<h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
+						<p><i class="glyphicon glyphicon-earphone"></i>(+92)-{{products.user_phone}}</p>
+					</div>
+						<div class="tips">
+						<h4>Safety Tips for Buyers</h4>
+							<ol>
+								<li><a>Please make sure your safety first.</a></li>
+								<li><a>Meet seller at safe place.</a></li>
+								<li><a>Don't pay before purchasing.</a></li>
+								<li><a>Stay alert of fraud and scams.</a></li>
+								<li><a>Choose public place for meet-up.</a></li>
+							</ol>
+						</div>
+				</div>
+			<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!--//single-page-->
+</body>
+{% endblock %}

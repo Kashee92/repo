@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+{% block body %}
+<body>
+<div class="header">
+	<div class="banner text-center">
+	  <div class="container">    
+			<h1>Sell or Advertise   <span class="segment-heading">    anything online </span> with Resale</h1>
+			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+			<a href="/adpost">Post Free Ad</a>
+	  </div>
+	</div>
+	<!-- Products -->
+	<div class="total-ads main-grid-border">
+		<div class="container">
+			<div class="all-categories" style='margin-top: 8px'>
+				<h3> Select your category and find the perfect ad</h3>
+				<ul class="all-cat-list">
+				{% load multifor %}
+				{% for items in prod_list; count in cat_count %}
+					<li><a href="/AllClassifieds/{{items.cat_id}}">{{items.cat_name}} <span class="num-of-ads">({{count}})</span></a></li>
+				{% endfor %}
+				</ul>
+			</div>
+			<div class="ads-grid">
+				<div class="side-bar col-md-3">
+					<div class="search-hotel">
+					<h3 class="sear-head">Name contains</h3>
+					<form action="/search/" method="GET">
+					{% csrf_token %}
+						<input type="text" name='item' value="Product name..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Product name...';}" required="">
+						<input type="submit" value=" ">
+					</form>
+				</div>
+				<div class="featured-ads">
+					<h2 class="sear-head fer">Featured Ads</h2>
+					{% for product in products %}
+						<div class="featured-ad">
+							<a href="/ProductDetail/{{product.prod_id}}">
+								<div class="featured-ad-left">
+									<img src="/media/{{product.image1}}" title="ad image" alt="" />
+								</div>
+								<div class="featured-ad-right">
+									<h4>{{product.prod_title}}</h4>
+									<p>Rs.{{product.prod_price}}</p>
+								</div>
+								<div class="clearfix"></div>
+							</a>
+						</div>
+					{% endfor %}
+					<div class="clearfix"></div>
+				</div>
+				</div>
+				<div class="ads-display col-md-9">
+					<div class="wrapper">					
+					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+					  <div id="myTabContent" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+						   <div>
+							<div id="container">
+								<h3 style='margin-bottom: 15px;'>Your search results are:</h3>
+								<div class="clearfix"></div>
+							<ul class="list">
+								{% for product in products %}
+								<a href="/ProductDetail/{{product.prod_id}}">
+									<li>
+									<img src="/media/{{product.image1}}" title="" alt="" />
+									<section class="list-left">
+									<h5 class="title">{{product.prod_title}}</h5>
+									<span class="adprice">Rs.{{product.prod_price}}</span>
+									<p class="catpath">{{product.prod_cat}} » Brand</p>
+									</section>
+									<section class="list-right">
+									<span class="date">{{product.prod_date}}</span>
+									<span class="cityname">{{product.prod_location}}</span>
+									</section>
+									<div class="clearfix"></div>
+									</li> 
+								</a>
+                            	{% endfor %}
+							</ul>
+						</div>
+							</div>
+						</div>
+						{% if products.has_other_pages %}
+							<ul class="pagination pagination-sm">
+								{% if products.has_previous %}
+									<li><a href="?page={{ products.previous_page_number }}">Prev</a></li>
+								{% else %}
+									<li class="disabled"><a href="#" > Prev</a></li>
+								{% endif %}
+
+								{% for pages in products.paginator.page_range %}
+									{% if products.number == pages %}
+										<li><a href="?page={{pages}}">{{pages}}</a></li>
+									{% else %}
+										<li><a href="?page={{pages}}">{{pages}}</a></li>
+									{% endif %}
+										
+								{% endfor %}
+
+								{% if products.has_next %}
+									<li><a href="?page={{ products.next_page_number }}">Next</a></li>
+								{% else %}
+									<li class="disabled"><a href="#">Next</a></li>
+								{% endif %}
+
+							</ul>
+						{% endif %}
+					  </div>
+					</div>
+				</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>	
+	</div>
+	<!-- // Products -->
+</body>
+{% endblock %}

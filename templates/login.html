@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+{% load static %}
+<div class="header">
+	{% block header %}
+		<div class="container">
+			<div class="logo">
+				<a href="/"><span>Re</span>sale</a>
+			</div>
+			<div class="header-right">
+				<a class="account" href="register">Signup</a>
+			</div>
+		</div>	
+	{% endblock%}
+	</div>
+
+{% block body %}
+<body>
+	 <section>
+			<div id="page-wrapper" class="sign-in-wrapper">
+				<div class="graphs">
+					<div class="sign-in-form">
+						<div class="sign-in-form-top">
+							<h1>Log in</h1>
+						</div>
+						<div class="signin">
+							<div class="signin-rit">
+								<span class="checkbox1">
+									 <label class="checkbox"><input type="checkbox" name="checkbox">Forgot Password ?</label>
+								</span>
+								<p><a href="password_reset">Click Here</a> </p>
+								<div class="clearfix"> </div>
+							</div>
+							<form method='POST' action='login'>
+							{% csrf_token %}
+							<div class="log-input">
+								<div class="log-input-left">
+								   <input type="text" class="user" name='username' placeholder="Your Username" required />
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="log-input">
+								<div class="log-input-left">
+								   <input type="password" class="lock" name='password' placeholder="Your Password" required />
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<input type="submit" value="Log in">
+						</form>	 
+						</div>
+						<div class="new_people">
+							<h2>For New People</h2>
+							<p>Having hands on experience in buying & selling products, We do offer reliable 
+								and safe platform for you.</p>
+							<a href="register">Register Now!</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--footer section start-->
+		{% block footer %}
+			<footer class="diff">
+			</footer>
+		{% endblock %}
+			<footer class="diff">
+			   <p class="text-center">&copy 2016 Resale. All Rights Reserved | Developed by <a href="/" >Kashif.</a></p>
+			</footer>
+        <!--footer section end-->
+	</section>
+	{% endblock %}
+	
+</body>
+</html>

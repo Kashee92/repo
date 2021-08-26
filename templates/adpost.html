@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+{% block body %}
+<body>
+	<div class="submit-ad main-grid-border">
+		<div class="container">
+			<h2 class="head">Post an Ad</h2>
+			<div class="post-ad-form">
+				<form method='POST' action='home' enctype='multipart/form-data'>
+					{% csrf_token %}
+					<label>Select Category <span>*</span></label>
+					<select class="" name='prodcat' required>
+					  <option>Select Category</option>
+					  {% for cat in categories %}
+					  	<option>{{ cat.cat_name }}</option>
+					  {% endfor %}
+					</select>
+					<div class="clearfix"></div>
+					<label>Ad Title <span>*</span></label>
+					<input type="text" class="phone" name='prodtitle' placeholder="" required>
+					<div class="clearfix"></div>
+					<label>Ad Description <span>*</span></label>
+					<textarea class="mess" name='proddesc' placeholder="Write few lines about your product" required></textarea>
+					<div class="clearfix"></div>
+
+					<div class="upload-ad-photos">
+						<label>Photos for your ad :</label>
+						<div class="photos-upload-view">
+							<input type="file" name="pic1" style="margin-bottom:5px" required />
+							<input type="file" name="pic2" style="margin-bottom:5px" />
+							<input type="file" name="pic3" style="margin-bottom:5px" />
+							<input type="file" name="pic4" style="margin-bottom:5px" />							
+						
+					</div>
+					<div class="clearfix"></div>
+					</div>
+					<div class="personal-details">
+						<label>Product Condition <span>*</span></label>
+						<select class="" name='prodcondition' required>
+					  		<option>Select Condition</option>
+					  		<option>NEW</option>
+							<option>USED</option>
+						</select>
+						<div class="clearfix"></div>
+						<label>Product Price <span>*</span></label>
+						<input type="text" class="phone" name='prodprice' placeholder="" required>
+						<div class="clearfix"></div>
+						<label>Location <span>*</span></label>
+						<input type="text" class="phone" name='prodlocation' placeholder="" required>
+						<div class="clearfix"></div>
+						<label>Your Mobile No <span>*</span></label>
+						<input type="text" class="phone" name='phone' placeholder="0300 1234567" required>
+						<div class="clearfix"></div>
+						<p class="post-terms">By clicking <strong>post Button</strong> you accept our <a>Terms of Use </a> and <a>Privacy Policy</a></p>
+					<input type="submit" value="Post">					
+					<div class="clearfix"></div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- // Submit Ad -->
+	
+</body>
+{% endblock %}
+</html>
